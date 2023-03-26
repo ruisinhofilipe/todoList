@@ -1,18 +1,25 @@
 import printMe from "./print";
+import "./styles.css";
+
 
 let projectNames = [];
+const mainDiv = document.createElement('div');
+mainDiv.setAttribute('class', 'mainDiv');
+document.body.appendChild(mainDiv);
+
 const projectInput = document.createElement('input');
 projectInput.setAttribute('type', 'text');
 projectInput.setAttribute('class', 'projectNameClass');
-document.body.appendChild(projectInput);
+mainDiv.appendChild(projectInput);
 
 const button = document.createElement('button');
 button.textContent = 'Add project';
-document.body.appendChild(button);
+mainDiv.appendChild(button);
+
 
 const button2 = document.createElement('button');
 button2.textContent = 'show project array';
-document.body.appendChild(button2);
+mainDiv.appendChild(button2);
 
 button2.addEventListener('click', () => {
     console.log(projectNames);
@@ -21,7 +28,7 @@ button2.addEventListener('click', () => {
 const projectDisplay = document.createElement('div');
 projectDisplay.setAttribute('class', 'projectsDisplay');
 projectDisplay.textContent = 'Project';
-document.body.appendChild(projectDisplay);
+mainDiv.appendChild(projectDisplay);
 
 
 button.addEventListener('click', () => {
@@ -36,6 +43,8 @@ button.addEventListener('click', () => {
     }
 
 })
+
+
 
 
 
