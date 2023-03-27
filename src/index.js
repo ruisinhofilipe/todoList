@@ -27,11 +27,12 @@ button2.addEventListener('click', () => {
 
 const projectDisplay = document.createElement('div');
 projectDisplay.setAttribute('class', 'projectsDisplay');
-projectDisplay.textContent = 'Project';
+projectDisplay.textContent = 'Todo List:';
 mainDiv.appendChild(projectDisplay);
 
 
 button.addEventListener('click', () => {
+
     printMe(projectNames, document.querySelector('.projectNameClass').value);
     if (document.querySelector('.projectNameClass').value !== '') {
         let smallDisplay = document.createElement('div');

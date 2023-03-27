@@ -1,5 +1,7 @@
 export default function printMe(array, value) {
-    array.push(value);
+    if (value !== '') {
+        array.push(value);
+    }
 
     return array;
 }
