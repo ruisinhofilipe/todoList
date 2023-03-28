@@ -1,12 +1,20 @@
 import printMe from "./print";
+import elementFactory from "./elementFactory";
 import "./styles.css";
+
 
 
 let todoArray = [];
 let projectArray = [];
-const mainDiv = document.createElement('div');
-mainDiv.setAttribute('class', 'mainDiv');
+
+
 document.body.appendChild(mainDiv);
+
+const mainDiv = elementFactory('div', { class: 'mainDiv' }, '',
+    elementFactory('div', { class: 'mainDivLeftSide' }, ''),
+    elementFactory('div', { class: 'mainDivRightSide' }, '')
+);
+
 
 const projectInput = document.createElement('input');
 projectInput.setAttribute('type', 'text');
