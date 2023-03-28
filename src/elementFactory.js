@@ -1,6 +1,6 @@
 const elementFactory = (type, attributes, textContent, ...children) => {
     const element = document.createElement(type);
-    for (key in attributes) {
+    for (let key in attributes) {
         element.setAttribute(key, attributes[key]);
     }
     element.textContent = textContent;

@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.mainDiv {
+    display: flex;
+}
+
 .projectsDisplay {
     margin-bottom: 3rem;
     display: flex;
