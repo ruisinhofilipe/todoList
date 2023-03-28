@@ -16,11 +16,11 @@ const mainDiv = elementFactory('div', { class: 'mainDiv' }, '',
         elementFactory('div', { class: 'todos' }, 'List of todos:'),
         elementFactory('button', { class: 'addTodo' }, 'Add todo'),
         elementFactory('button', { class: 'showTodos' }, 'Show todos array(console)')
-    ),
-    elementFactory('input', { class: 'projectNameClass', type: 'text' })
-);
+    ));
 
+// elementFactory('input', { class: 'projectNameClass', type: 'text' });
 document.body.appendChild(mainDiv);
+document.body.appendChild(elementFactory('input', { class: 'projectNameClass', type: 'text' }));
 
 
 const button = document.querySelector('.addTodo');
