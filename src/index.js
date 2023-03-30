@@ -8,18 +8,29 @@ let projectArray = [];
 document.body.appendChild(
     elementFactory('div', { class: 'mainDiv' }, '',
         elementFactory('div', { class: 'mainDivLeftSide' }, '',
-            elementFactory('div', { class: 'projects' }, 'List of projects:'),
+            elementFactory('div', { class: 'projects' }, 'List of projects:',
+                elementFactory('div', { class: 'projectsList' }, 'Default')),
             elementFactory('button', { class: 'addProject' }, 'Add projects'),
             elementFactory('button', { class: 'showProjects' }, 'Show projects array(console)')
         ),
         elementFactory('div', { class: 'mainDivRightSide' }, '',
-            elementFactory('div', { class: 'todos' }, 'List of todos:'),
+            elementFactory('div', { class: 'todos' }, 'List of todos:',
+                elementFactory('div', { class: 'todosList' }, 'Default1'),
+                elementFactory('div', { class: 'todosList' }, 'Default2'),
+                elementFactory('div', { class: 'todosList' }, 'Default3'),
+                elementFactory('div', { class: 'todosList' }, 'Default4')),
             elementFactory('button', { class: 'addTodo' }, 'Add todo'),
             elementFactory('button', { class: 'showTodos' }, 'Show todos array(console)'))),
 );
 const input = elementFactory('input', { class: 'projectNameClass', type: 'text' });
 document.body.appendChild(input);
 
+const allTodos = document.querySelectorAll('.todosList');
+let todosIndex = 0;
+allTodos.forEach(todo => {
+    todo.setAttribute('data-key', todosIndex);
+    todosIndex++;
+});
 
 const button = document.querySelector('.addTodo');
 const button2 = document.querySelector('.showTodos');
@@ -55,6 +66,9 @@ button3.addEventListener('click', () => {
 button4.addEventListener('click', () => {
     console.log(projectArray);
 });
+
+
+
 
 
 
