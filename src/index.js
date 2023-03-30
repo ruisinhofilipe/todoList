@@ -32,7 +32,7 @@ const projectDisplay = document.querySelector('.projects');
 button.addEventListener('click', () => {
     printMe(todoArray, document.querySelector('.projectNameClass').value);
     if (document.querySelector('.projectNameClass').value !== '') {
-        let todo = elementFactory('div', { class: 'todoList' }, todoArray[todoArray.length - 1])
+        let todo = elementFactory('div', { class: 'todosList' }, todoArray[todoArray.length - 1])
         todoDisplay.appendChild(todo);
         document.querySelector('.projectNameClass').value = '';
     }
