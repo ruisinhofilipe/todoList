@@ -25,12 +25,6 @@ document.body.appendChild(
 const input = elementFactory('input', { class: 'projectNameClass', type: 'text' });
 document.body.appendChild(input);
 
-const allTodos = document.querySelectorAll('.todosList');
-let todosIndex = 0;
-allTodos.forEach(todo => {
-    todo.setAttribute('data-key', todosIndex);
-    todosIndex++;
-});
 
 const button = document.querySelector('.addTodo');
 const button2 = document.querySelector('.showTodos');
@@ -47,6 +41,7 @@ button.addEventListener('click', () => {
         todoDisplay.appendChild(todo);
         document.querySelector('.projectNameClass').value = '';
     }
+    todosIndexCare();
 });
 
 button2.addEventListener('click', () => {
@@ -66,6 +61,18 @@ button3.addEventListener('click', () => {
 button4.addEventListener('click', () => {
     console.log(projectArray);
 });
+
+function todosIndexCare() {
+    const allTodos = document.querySelectorAll('.todosList');
+    let todosIndex = 0;
+    allTodos.forEach(todo => {
+        todo.setAttribute('data-key', todosIndex);
+        todo.addEventListener('click', () => {
+            console.log(todo.getAttribute('data-key'));
+        })
+        todosIndex++;
+    });
+}
 
 
 
