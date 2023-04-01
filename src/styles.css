@@ -7,36 +7,3 @@
 .mainDiv {
     display: flex;
 }
-
-.projectsDisplay {
-    margin-bottom: 3rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.mainDivLeftSide,
-.mainDivRightSide {
-    width: 50%;
-}
-
-.todos,
-.projects {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.7rem;
-}
-
-.todosList {
-    font-size: 2rem;
-    padding: 0.4rem;
-    width: 75%;
-    border: 1px solid black;
-}
-
-.projectsList {
-    padding: 0.4rem;
-    width: 30%;
-    border: 1px solid black;
-}
