@@ -1,59 +1,46 @@
 import elementFactory from './elementFactory';
+import clearDuplicate from './dom';
 
-// const TakeCareProjectObject = () => {
-//     this.addProperties = function objectProperties(obj, value) {
-//         if (value !== '') {
-//             obj[value] = [];
-//         }
+export let projectObj = {};
 
-//         return obj;
-//     };
-
-// }
-
-function objectProperties(obj, value) {
-    if (value !== '') {
-        obj[value] = [];
+function addProjectToObj(projectName) {
+    if (projectName !== null) {
+        projectObj[projectName] = [];
     }
-
-    return obj;
-}
-
-function clearDuplicateProjects() {
-    let allProjects = document.querySelectorAll('.projectsName');
-    for (let i = 0; i < allProjects.length; i++) {
-        allProjects[i].remove();
-    }
-
+    return projectObj;
 }
 
 export function addProjects() {
 
-    let projectObj = {};
     const mainDiv = document.querySelector('.mainDiv');
 
-
-    //Project div 
-    const displayProjects = elementFactory('div', { class: 'displayProjects' });
-    mainDiv.appendChild(displayProjects);
+    //Projects div
+    const projects = elementFactory('div', { class: 'projectsDiv' });
+    mainDiv.appendChild(projects);
 
     // Add project button
     const addProject = elementFactory('button', { class: 'addProjectButton' }, '+');
-    displayProjects.appendChild(addProject);
+    projects.appendChild(addProject);
 
     // Text input to add projects
     const addProjectInput = elementFactory('input', { type: 'text', class: 'addProjectInput' });
-    displayProjects.appendChild(addProjectInput);
+    projects.appendChild(addProjectInput);
+
+    //Projects display
+    const displayProjects = elementFactory('div', { class: 'displayProjects' });
+    projects.appendChild(displayProjects);
 
     // Add project button event listener
     addProject.addEventListener('click', () => {
         let projectIndex = 0;
 
         // Clear every project DOM element previously created so it doesn't have duplicates on the page
-        clearDuplicateProjects();
+        clearDuplicate('.projectsName');
 
-        objectProperties(projectObj, document.getElementsByClassName('addProjectInput')[0].value)
+        // let projectName = document.getElementsByClassName('addProjectInput')[0].value
+        addProjectToObj(document.getElementsByClassName('addProjectInput')[0].value);
         document.getElementsByClassName('addProjectInput')[0].value = '';
+        console.log(projectObj);
 
         // create a div and display each project
         for (let keys in projectObj) {
@@ -61,16 +48,7 @@ export function addProjects() {
             displayProjects.appendChild(projectName);
             projectIndex++;
         }
-
-
-
-
     });
 
-    return addProject, addProjectInput;
+    return addProjects, addProjectInput;
 }
-
-
-
-
-
