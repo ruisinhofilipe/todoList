@@ -1,8 +1,15 @@
 const todoFactory = (title, description, dueDate, priority) => {
-    this.title = title;
-    this.description = description;
-    this.dueDate = dueDate;
-    this.priority = priority;
+    return { title, description, dueDate, priority }
 }
 
-// Projects be pushed into an array and then later for the todos I'd have to keep track of each project is active (maybe assign an id to each project added and then when adding a todo, get the id of the current project ?)
+export function todoButton() {
+    const newTodoButton = document.querySelector('#newTodoButton');
+    newTodoButton.addEventListener('click', () => {
+        let newTodo = todoFactory(document.getElementById('title').value, document.getElementById('dueDate').value, document.getElementById('description').value, document.getElementsByClassName('priority')[0].value);
+        console.log(newTodo);
+
+    })
+}
+
+
+
