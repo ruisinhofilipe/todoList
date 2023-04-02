@@ -1,10 +1,14 @@
 import elementFactory from './elementFactory';
-import clearDuplicate from './dom';
+import clearDuplicate from './clearDuplicate';
 
-export let projectArray = [];
+export let projectArray = ['Standard'];
+export let currentProjectIndex = 0;
 
+const mainDiv = document.querySelector('.mainDiv');
+
+// Push project to array
 function pushProject(projectName) {
-    if (projectName !== null && !projectArray.includes(projectName)) {
+    if (projectName !== null && !projectArray.includes(projectName) && projectName !== '' && projectName !== ' ') {
         projectArray.push(projectName);
     } else {
         alert('Please, introduce a valid project name or one that you haven\'t introduced before.');
@@ -12,45 +16,61 @@ function pushProject(projectName) {
     return projectArray;
 }
 
-export function addProjects() {
+// update the current project according to user click
+function updateCurrentProject() {
+    const everyProject = document.querySelectorAll('.projectsName');
+    everyProject.forEach(project => {
+        project.addEventListener('click', () => {
+            currentProjectIndex = projectArray.indexOf(project.textContent);
+            console.log(currentProjectIndex)
+        });
+    });
+    return currentProjectIndex;
+};
 
-    const mainDiv = document.querySelector('.mainDiv');
-
+export function projectDom() {
     //Projects div
-    const projects = elementFactory('div', { class: 'projectsDiv' });
-    mainDiv.appendChild(projects);
+    const projectsDiv = elementFactory('div', { class: 'projectsDiv' });
+    mainDiv.appendChild(projectsDiv);
 
     // Add project button
-    const addProject = elementFactory('button', { class: 'addProjectButton' }, '+');
-    projects.appendChild(addProject);
+    const addProjectButton = elementFactory('button', { class: 'addProjectButton' }, '+');
+    projectsDiv.appendChild(addProjectButton);
 
     // Text input to add projects
-    const addProjectInput = elementFactory('input', { type: 'text', class: 'addProjectInput' });
-    projects.appendChild(addProjectInput);
+    const projectInput = elementFactory('input', { type: 'text', class: 'addProjectInput' });
+    projectsDiv.appendChild(projectInput);
 
     //Projects display
     const displayProjects = elementFactory('div', { class: 'displayProjects' });
-    projects.appendChild(displayProjects);
+    projectsDiv.appendChild(displayProjects);
 
+    //Print first project that I defined myself
+    if (!document.querySelector('.projectsName')) {
+        // create a div and display the first project
+        for (let i = 0; i < projectArray.length; i++) {
+            const projectName = elementFactory('div', { class: 'projectsName' }, projectArray[i]);
+            displayProjects.appendChild(projectName);
+            currentProjectIndex = projectArray.indexOf(projectArray[0]);
+        }
+    }
     // Add project button event listener
-    addProject.addEventListener('click', () => {
-        // let projectIndex = 0;
+    addProjectButton.addEventListener('click', () => {
 
         // Clear every project DOM element previously created so it doesn't have duplicates on the page
         clearDuplicate('.projectsName');
 
-        // let projectName = document.getElementsByClassName('addProjectInput')[0].value
         pushProject(document.getElementsByClassName('addProjectInput')[0].value);
         document.getElementsByClassName('addProjectInput')[0].value = '';
         console.log(projectArray);
 
         // create a div and display each project
         for (let i = 0; i < projectArray.length; i++) {
-            const projectName = elementFactory('div', { class: 'projectsName' }, projectArray[i]);   // , id: projectIndex 
+            const projectName = elementFactory('div', { class: 'projectsName' }, projectArray[i]);
             displayProjects.appendChild(projectName);
-            // projectIndex++;
         }
-    });
 
-    return addProjects, addProjectInput;
+        updateCurrentProject();
+    });
+    return projectDom, currentProjectIndex;
 }

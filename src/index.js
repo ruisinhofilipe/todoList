@@ -1,8 +1,8 @@
 import "./styles.css";
 import { todoButton } from './todoFactory'
-import { addProjects } from "./projects";
+import { projectDom } from "./projects";
 
-addProjects();
+projectDom();
 todoButton();
 
 
