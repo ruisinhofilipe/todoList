@@ -1,5 +1,6 @@
 import elementFactory from './elementFactory';
 import clearDuplicate from './clearDuplicate';
+import { todoArray } from './todoFactory';
 
 export let projectArray = ['Standard'];
 export let currentProjectIndex = 0;
@@ -57,9 +58,13 @@ export function projectDom() {
     // Add project button event listener
     addProjectButton.addEventListener('click', () => {
 
+        // create an Array inside todo array everytime a project is created
+        todoArray.push([]);
+
         // Clear every project DOM element previously created so it doesn't have duplicates on the page
         clearDuplicate('.projectsName');
 
+        // push project into array project
         pushProject(document.getElementsByClassName('addProjectInput')[0].value);
         document.getElementsByClassName('addProjectInput')[0].value = '';
         console.log(projectArray);
@@ -69,7 +74,6 @@ export function projectDom() {
             const projectName = elementFactory('div', { class: 'projectsName' }, projectArray[i]);
             displayProjects.appendChild(projectName);
         }
-
         updateCurrentProject();
     });
     return projectDom, currentProjectIndex;
