@@ -1,13 +1,15 @@
 import elementFactory from './elementFactory';
 import clearDuplicate from './dom';
 
-export let projectObj = {};
+export let projectArray = [];
 
-function addProjectToObj(projectName) {
-    if (projectName !== null) {
-        projectObj[projectName] = [];
+function pushProject(projectName) {
+    if (projectName !== null && !projectArray.includes(projectName)) {
+        projectArray.push(projectName);
+    } else {
+        alert('Please, introduce a valid project name or one that you haven\'t introduced before.');
     }
-    return projectObj;
+    return projectArray;
 }
 
 export function addProjects() {
@@ -32,21 +34,21 @@ export function addProjects() {
 
     // Add project button event listener
     addProject.addEventListener('click', () => {
-        let projectIndex = 0;
+        // let projectIndex = 0;
 
         // Clear every project DOM element previously created so it doesn't have duplicates on the page
         clearDuplicate('.projectsName');
 
         // let projectName = document.getElementsByClassName('addProjectInput')[0].value
-        addProjectToObj(document.getElementsByClassName('addProjectInput')[0].value);
+        pushProject(document.getElementsByClassName('addProjectInput')[0].value);
         document.getElementsByClassName('addProjectInput')[0].value = '';
-        console.log(projectObj);
+        console.log(projectArray);
 
         // create a div and display each project
-        for (let keys in projectObj) {
-            const projectName = elementFactory('div', { class: 'projectsName', id: projectIndex }, keys);
+        for (let i = 0; i < projectArray.length; i++) {
+            const projectName = elementFactory('div', { class: 'projectsName' }, projectArray[i]);   // , id: projectIndex 
             displayProjects.appendChild(projectName);
-            projectIndex++;
+            // projectIndex++;
         }
     });
 
