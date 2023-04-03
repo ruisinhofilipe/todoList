@@ -3,9 +3,15 @@ import clearDuplicate from './clearDuplicate';
 import { todoArray } from './todoFactory';
 
 export let projectArray = ['Standard'];
-export let currentProjectIndex = 0;
+export let currentProjectIndex;
 
 const mainDiv = document.querySelector('.mainDiv');
+
+// function displayArrayProjects() {
+//     projectArray.forEach(project => {
+//         const displayProjects = document.querySelector('.displayProjects');
+//     });
+// }
 
 // Push project to array
 function pushProject(projectName) {
@@ -23,7 +29,7 @@ function updateCurrentProject() {
     everyProject.forEach(project => {
         project.addEventListener('click', () => {
             currentProjectIndex = projectArray.indexOf(project.textContent);
-            console.log(currentProjectIndex)
+            console.log(currentProjectIndex);
         });
     });
     return currentProjectIndex;
@@ -46,23 +52,12 @@ export function projectDom() {
     const displayProjects = elementFactory('div', { class: 'displayProjects' });
     projectsDiv.appendChild(displayProjects);
 
-    //Print first project that I defined myself
-    if (!document.querySelector('.projectsName')) {
-        // create a div and display the first project
-        for (let i = 0; i < projectArray.length; i++) {
-            const projectName = elementFactory('div', { class: 'projectsName' }, projectArray[i]);
-            displayProjects.appendChild(projectName);
-            currentProjectIndex = projectArray.indexOf(projectArray[0]);
-        }
-    }
     // Add project button event listener
     addProjectButton.addEventListener('click', () => {
-
+        // Clear every project DOM element previously created so it doesn't have duplicates on the page
+        clearDuplicate('.projectsNameDiv');
         // create an Array inside todo array everytime a project is created
         todoArray.push([]);
-
-        // Clear every project DOM element previously created so it doesn't have duplicates on the page
-        clearDuplicate('.projectsName');
 
         // push project into array project
         pushProject(document.getElementsByClassName('addProjectInput')[0].value);
@@ -71,10 +66,23 @@ export function projectDom() {
 
         // create a div and display each project
         for (let i = 0; i < projectArray.length; i++) {
+            const projectNameDiv = elementFactory('div', { class: 'projectsNameDiv', index: i });
             const projectName = elementFactory('div', { class: 'projectsName' }, projectArray[i]);
-            displayProjects.appendChild(projectName);
+            const projectNameRemoveButton = elementFactory('button', { class: 'projectsNameRemoveButton' }, 'x');
+
+            projectNameRemoveButton.addEventListener('click', () => {
+                let index = projectNameRemoveButton.parentNode.getAttribute('index');
+                projectArray.splice(index, 1);
+            });
+
+            projectNameDiv.appendChild(projectName);
+            projectNameDiv.appendChild(projectNameRemoveButton);
+            displayProjects.appendChild(projectNameDiv);
         }
+
         updateCurrentProject();
-    });
-    return projectDom, currentProjectIndex;
+    })
+
+    // });
+    // return projectDom, currentProjectIndex;
 }
