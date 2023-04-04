@@ -1,9 +1,14 @@
 import "./styles.css";
-import { todoButton } from './todoFactory'
+import { todos } from './todoFactory';
+
+import { pushTodo } from './todoFactory';
 import { projectDom } from "./projects";
 
 projectDom();
-// todoButton();
+todos();
+
+
+
 
 
 

@@ -1,8 +1,10 @@
 import elementFactory from './elementFactory';
 import clearDuplicate from './clearDuplicate';
 import { todoArray } from './todoFactory';
+import { todos } from './todoFactory';
 
-export let projectArray = ['Standard', 'Study', 'Gym'];
+
+export let projectArray = ['Standard'];
 export let currentProjectIndex = 0;
 
 const projectsDiv = document.querySelector('.projectsDiv');
@@ -18,51 +20,57 @@ function displayArrayProjects() {
         projectNameDiv.appendChild(projectName);
         projectNameDiv.appendChild(removeProject);
         displayProjects.appendChild(projectNameDiv);
-        removeProject.addEventListener('click', () => {
+
+
+        projectNameDiv.addEventListener('click', () => {
+            currentProjectIndex = projectNameDiv.getAttribute('index');
+            document.querySelector('.currentPrj').textContent = projectArray[currentProjectIndex];
+            console.log(todoArray[currentProjectIndex]);
+            displayArrayProjects();
+        });
+
+        // Remove projects
+        removeProject.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             let index = removeProject.parentNode.getAttribute('index');
             projectArray.splice(index, 1);
             todoArray.splice(index, 1);
+            if (projectArray.length >= 1) {
+                currentProjectIndex = 0;
+                document.querySelector('.currentPrj').textContent = projectArray[currentProjectIndex];
+                todos();
+            } else {
+                document.querySelector('.currentPrj').textContent = 'You have no active projects.';
+            }
             displayArrayProjects();
-            console.log(projectArray);
         });
     });
-    updateCurrentProject();
 }
 
 // Push project to array
 function pushProject(projectName) {
     if (projectName !== null && !projectArray.includes(projectName) && projectName !== '' && projectName !== ' ') {
         projectArray.push(projectName);
+        todoArray.push([]);
     } else {
-        alert('Please, introduce a valid project name or one that you haven\'t introduced before.');
+        alert('Please, introduce a valid project name.');
     }
     return projectArray;
 }
 
-// update the current project according to user click
-function updateCurrentProject() {
-    const everyProject = document.querySelectorAll('.projectsName');
-    everyProject.forEach(project => {
-        todoArray.push([]);
-        project.addEventListener('click', () => {
-            currentProjectIndex = projectArray.indexOf(project.textContent);
-            if (todoArray[currentProjectIndex]) {
-                console.log(todoArray[currentProjectIndex]);
-            }
-        });
-    });
-    return currentProjectIndex;
-};
 
 export function projectDom() {
-    // Add project button
-    const addProjectButton = elementFactory('button', { class: 'addProjectButton' }, '+');
-    projectsDiv.appendChild(addProjectButton);
+    // console.log(todoArray)
+    //Add project div 
+    const addPrj = elementFactory('div', { class: 'addPrj' }, undefined,
+        elementFactory('input', { type: 'text', class: 'addProjectInput', placeholder: 'Your new project' }),
+        elementFactory('button', { class: 'addProjectButton' }, 'Create project')
+    );
+    projectsDiv.appendChild(addPrj);
 
-    // Text input to add projects
-    const projectInput = elementFactory('input', { type: 'text', class: 'addProjectInput' });
-    projectsDiv.appendChild(projectInput);
-
+    const currentPrj = elementFactory('div', { class: 'currentPrj' }, projectArray[currentProjectIndex]);
+    projectsDiv.appendChild(currentPrj);
     //Projects display
     const displayProjects = elementFactory('div', { class: 'displayProjects' });
     projectsDiv.appendChild(displayProjects);
@@ -70,14 +78,11 @@ export function projectDom() {
     displayArrayProjects();
 
     // Add project button event listener
+    const addProjectButton = document.querySelector('.addProjectButton');
     addProjectButton.addEventListener('click', () => {
         // push project into array project
         pushProject(document.getElementsByClassName('addProjectInput')[0].value);
         document.getElementsByClassName('addProjectInput')[0].value = '';
-        console.log(projectArray);
-
         displayArrayProjects();
-    })
-
-    // return projectDom, currentProjectIndex;
+    });
 }
