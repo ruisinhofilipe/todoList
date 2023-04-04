@@ -2,7 +2,7 @@ import elementFactory from "./elementFactory";
 import { projectArray } from "./projects";
 import { currentProjectIndex } from "./projects";
 
-export let todoArray = [[]];
+export let todoArray = [['arroz'], ['massa']];
 let index = 0;
 
 const todoFactory = (title, description, dueDate, priority) => {
