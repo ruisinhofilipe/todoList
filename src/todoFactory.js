@@ -25,7 +25,7 @@ export function todos() {
         } else {
             todoArray[currentProjectIndex].push(todoFactory(title, description, dueDate, priority));
         };
-        displayTodos(currentProjectIndex); s
+        displayTodos(currentProjectIndex);
     });
 }
 
