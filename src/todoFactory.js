@@ -1,8 +1,9 @@
 import elementFactory from "./elementFactory";
 import { projectArray } from "./projects";
 import { currentProjectIndex } from "./projects";
+import removeDom from "./clearPage";
 
-export let todoArray = [[]];
+export let todoArray = [[{ name: 'Rui', age: 23, gf: 'Catia' }, { name: 'Catia', age: 24, gf: 'Rui' }], [{ name: 'Susana', age: 57, gf: 'Rui Pai' }, { name: 'Rui', age: 23, gf: 'Catia' }]];
 const todosDiv = document.querySelector('.todosDiv');
 const newTodoButton = document.querySelector('#newTodoButton');
 
@@ -24,22 +25,21 @@ export function todos() {
         } else {
             todoArray[currentProjectIndex].push(todoFactory(title, description, dueDate, priority));
         };
-        displayTodos(title, description, dueDate, priority);
+        displayTodos(currentProjectIndex); s
     });
-    console.log(todoArray[currentProjectIndex]);
 }
 
-
-function displayTodos(name, des, date, prio) {
-    const displayTodos = elementFactory('div', { class: 'displayTodos' }, undefined,
-        elementFactory('p', { class: 'titleTodo' }, name),
-        elementFactory('p', { class: 'descriptionTodo' }, des),
-        elementFactory('p', { class: 'dateTodo' }, date),
-        elementFactory('p', { class: 'priorityTodo' }, prio)
-
-    );
-    todosDiv.appendChild(displayTodos);
+export function displayTodos(index) {
+    removeDom('.displayTodos');
+    for (let j = 0; j < todoArray[index].length; j++) {
+        const displayTodos = elementFactory('div', { class: 'displayTodos' }, undefined)
+        for (let key in todoArray[index][j]) {
+            displayTodos.appendChild(elementFactory('p', { class: `${key}Todo` }, todoArray[index][j][key]));
+            todosDiv.appendChild(displayTodos);
+        };
+    };
 };
+
 
 
 

@@ -2,6 +2,7 @@ import elementFactory from './elementFactory';
 import clearDuplicate from './clearDuplicate';
 import { todoArray } from './todoFactory';
 import { todos } from './todoFactory';
+import { displayTodos } from './todoFactory';
 
 
 export let projectArray = ['Standard'];
@@ -25,7 +26,7 @@ function displayArrayProjects() {
         projectNameDiv.addEventListener('click', () => {
             currentProjectIndex = projectNameDiv.getAttribute('index');
             document.querySelector('.currentPrj').textContent = projectArray[currentProjectIndex];
-            console.log(todoArray[currentProjectIndex]);
+            displayTodos(currentProjectIndex);
             displayArrayProjects();
         });
 
@@ -43,6 +44,7 @@ function displayArrayProjects() {
             } else {
                 document.querySelector('.currentPrj').textContent = 'You have no active projects.';
             }
+            displayTodos(currentProjectIndex);
             displayArrayProjects();
         });
     });
