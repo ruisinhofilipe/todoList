@@ -20,6 +20,9 @@ function formData() {
             let title = document.getElementById('title').value;
             let description = document.getElementById('description').value;
             let dueDate = document.getElementById('dueDate').value;
+            if (dueDate == '') {
+                dueDate = 'No date preview';
+            }
             let priority = document.getElementsByClassName('priority')[0].value;
             todoArray[currentProjectIndex].push(todoFactory(title, description, dueDate, priority));
             displayTodos(currentProjectIndex);

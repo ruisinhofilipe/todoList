@@ -1,7 +1,6 @@
 import elementFactory from './elementFactory';
 import clearDuplicate from './clearDuplicate';
 import { todoArray } from './todoFactory';
-import { todos } from './todoFactory';
 import { displayTodos } from './todoFactory';
 import removeDom from './clearPage';
 
@@ -10,6 +9,10 @@ export let projectArray = [];
 export let currentProjectIndex;
 
 const projectsDiv = document.querySelector('.projectsDiv');
+
+
+// change the current index to store not a number but the project name and then use indexOf whenever I want to acess the project's index. This makes it easier to remove other projects and keep the current project as the current project still
+
 
 
 // Push project to array
@@ -21,6 +24,17 @@ function pushProject(projectName) {
         alert('Please, introduce a valid project name or you that you haven\'t introduced yet.');
     }
     return projectArray;
+}
+
+function styleProject() {
+    let projects = document.querySelectorAll('.projectsNameDiv');
+    projects.forEach(project => {
+        if (currentProjectIndex == project.getAttribute('index')) {
+            project.classList.add('clicked');
+        } else {
+            project.classList.remove('clicked');
+        }
+    });
 }
 
 function displayArrayProjects() {
@@ -41,6 +55,7 @@ function displayArrayProjects() {
             document.querySelector('.currentPrj').textContent = projectArray[currentProjectIndex];
             displayTodos(currentProjectIndex);
             displayArrayProjects();
+            styleProject()
         });
 
         // Remove projects
