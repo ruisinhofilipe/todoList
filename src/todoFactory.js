@@ -6,6 +6,7 @@ import removeDom from "./clearPage";
 export let todoArray = [[{ name: 'Rui', age: 23, gf: 'Catia' }, { name: 'Catia', age: 24, gf: 'Rui' }], [{ name: 'Susana', age: 57, gf: 'Rui Pai' }, { name: 'Rui', age: 23, gf: 'Catia' }]];
 const todosDiv = document.querySelector('.todosDiv');
 const newTodoButton = document.querySelector('#newTodoButton');
+const displayEveryTodo = document.querySelector('.displayTodos');
 
 const todoFactory = (title, description, dueDate, priority) => {
     return { title, description, dueDate, priority }
@@ -30,12 +31,13 @@ export function todos() {
 }
 
 export function displayTodos(index) {
-    removeDom('.displayTodos');
+    removeDom('.displayTodo');
     for (let j = 0; j < todoArray[index].length; j++) {
-        const displayTodos = elementFactory('div', { class: 'displayTodos' }, undefined)
+        const displayTodo = elementFactory('div', { class: 'displayTodo' }, undefined)
         for (let key in todoArray[index][j]) {
-            displayTodos.appendChild(elementFactory('p', { class: `${key}Todo` }, todoArray[index][j][key]));
-            todosDiv.appendChild(displayTodos);
+            displayTodo.appendChild(elementFactory('p', { class: `${key}Todo` }, `${key}: ${todoArray[index][j][key]}`));
+            displayEveryTodo.appendChild(displayTodo);
+            todosDiv.appendChild(displayEveryTodo);
         };
     };
 };
