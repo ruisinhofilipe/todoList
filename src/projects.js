@@ -3,12 +3,25 @@ import clearDuplicate from './clearDuplicate';
 import { todoArray } from './todoFactory';
 import { todos } from './todoFactory';
 import { displayTodos } from './todoFactory';
+import removeDom from './clearPage';
 
 
-export let projectArray = ['Standard'];
-export let currentProjectIndex = 0;
+export let projectArray = [];
+export let currentProjectIndex;
 
 const projectsDiv = document.querySelector('.projectsDiv');
+
+
+// Push project to array
+function pushProject(projectName) {
+    if (projectName !== null && !projectArray.includes(projectName) && projectName !== '' && projectName !== ' ') {
+        projectArray.push(projectName);
+        todoArray.push([]);
+    } else {
+        alert('Please, introduce a valid project name or you that you haven\'t introduced yet.');
+    }
+    return projectArray;
+}
 
 function displayArrayProjects() {
     clearDuplicate('.projectsNameDiv');
@@ -40,30 +53,21 @@ function displayArrayProjects() {
             if (projectArray.length >= 1) {
                 currentProjectIndex = 0;
                 document.querySelector('.currentPrj').textContent = projectArray[currentProjectIndex];
-                todos();
+                // todos();
+                displayArrayProjects();
+                displayTodos(currentProjectIndex);
             } else {
+                currentProjectIndex = '';
                 document.querySelector('.currentPrj').textContent = 'You have no active projects.';
+                displayArrayProjects();
+                removeDom('.displayTodo');
             }
-            displayTodos(currentProjectIndex);
-            displayArrayProjects();
         });
     });
 }
 
-// Push project to array
-function pushProject(projectName) {
-    if (projectName !== null && !projectArray.includes(projectName) && projectName !== '' && projectName !== ' ') {
-        projectArray.push(projectName);
-        todoArray.push([]);
-    } else {
-        alert('Please, introduce a valid project name.');
-    }
-    return projectArray;
-}
-
 
 export function projectDom() {
-    // console.log(todoArray)
     //Add project div 
     const addPrj = elementFactory('div', { class: 'addPrj' }, undefined,
         elementFactory('input', { type: 'text', class: 'addProjectInput', placeholder: 'Your new project' }),
