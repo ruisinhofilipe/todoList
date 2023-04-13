@@ -32,24 +32,33 @@
     font-size: 1.5rem;
     padding: 1rem;
     display: flex;
-    width: 75%;
+    width: 65%;
+    border-radius: 0.6rem;
     justify-content: space-between;
+    background-color: #16205E;
 }
 
 .projectsNameDiv.clicked {
     cursor: pointer;
-    background-color: rgb(144, 144, 125);
+    background-color: #6978d3;
     font-size: 1.47rem;
-    border: 1px solid black;
     border-radius: 0.6rem;
+    width: 72%;
 }
 
 .projectsNameDiv:hover {
     cursor: pointer;
-    /* background-color: beige; */
-    font-size: 1.47rem;
-    border: 1px solid black;
+    background-color: #333e86;
     border-radius: 0.6rem;
+    width: 67%;
+}
+
+.projectsNameDiv.clicked:hover {
+    cursor: pointer;
+    background-color: #6978d3;
+    font-size: 1.47rem;
+    border-radius: 0.6rem;
+    width: 72%;
 }
 
 .todosDiv {

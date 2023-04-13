@@ -1,1 +1,0 @@
-// Start css, I'm right now stuck. style a bit the page and it might help understanding my errors

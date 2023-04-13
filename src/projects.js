@@ -10,11 +10,6 @@ export let currentProjectIndex;
 
 const projectsDiv = document.querySelector('.projectsDiv');
 
-
-// change the current index to store not a number but the project name and then use indexOf whenever I want to acess the project's index. This makes it easier to remove other projects and keep the current project as the current project still
-
-
-
 // Push project to array
 function pushProject(projectName) {
     if (projectName !== null && !projectArray.includes(projectName) && projectName !== '' && projectName !== ' ') {
@@ -26,6 +21,7 @@ function pushProject(projectName) {
     return projectArray;
 }
 
+// Style each project when clicked
 function styleProject() {
     let projects = document.querySelectorAll('.projectsNameDiv');
     projects.forEach(project => {
@@ -52,7 +48,6 @@ function displayArrayProjects() {
 
         projectNameDiv.addEventListener('click', () => {
             currentProjectIndex = projectNameDiv.getAttribute('index');
-            document.querySelector('.currentPrj').textContent = projectArray[currentProjectIndex];
             displayTodos(currentProjectIndex);
             displayArrayProjects();
             styleProject()
@@ -67,13 +62,11 @@ function displayArrayProjects() {
             todoArray.splice(index, 1);
             if (projectArray.length >= 1) {
                 currentProjectIndex = 0;
-                document.querySelector('.currentPrj').textContent = projectArray[currentProjectIndex];
-                // todos();
                 displayArrayProjects();
                 displayTodos(currentProjectIndex);
+                styleProject();
             } else {
                 currentProjectIndex = '';
-                document.querySelector('.currentPrj').textContent = 'You have no active projects.';
                 displayArrayProjects();
                 removeDom('.displayTodo');
             }
@@ -90,8 +83,6 @@ export function projectDom() {
     );
     projectsDiv.appendChild(addPrj);
 
-    const currentPrj = elementFactory('div', { class: 'currentPrj' }, projectArray[currentProjectIndex]);
-    projectsDiv.appendChild(currentPrj);
     //Projects display
     const displayProjects = elementFactory('div', { class: 'displayProjects' });
     projectsDiv.appendChild(displayProjects);
