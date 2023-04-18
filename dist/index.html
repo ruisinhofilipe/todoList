@@ -16,21 +16,6 @@
         </div>
         <div class="todosDiv">
             <button class="addTodo">+</button>
-            <form class='new-project-form' name='newTodo' style="display: none;">
-                <div class='form-title'> Create new todo</div>
-                <label for='title'> Title: </label>
-                <input type='text' id='title' name='title'><br>
-                <label for='description'>Description:</label>
-                <input type="text" id='description' name='description'><br>
-                <label for='Due-Date'> Due-Date: </label>
-                <input type='date' id='dueDate' name='dueDate' required><br>
-                <label for='priority'>Priority:</label>
-                <input type='radio' id='normal' class='priority' name='priority' value="normal">
-                <label for='normal'>Normal</label><br>
-                <input type="radio" id='urgent' class='priority' name='priority' value='urgent'>
-                <label for='urgent'>Urgent</label>
-                <button type="button" id='newTodoButton'>Create</button>
-            </form>
             <div class="displayTodos"></div>
         </div>
     </div>
@@ -45,6 +30,32 @@
             <button class="cancelButton">Cancel</button>
         </div>
     </div>
+    <form class='new-project-form' name='newTodo'>
+        <div class="todo-title">
+            <label for='title'> Title</label>
+            <input type='text' id='title' name='title'>
+        </div>
+        <div class="todo-description">
+            <label for='description'>Description</label>
+            <input type="text" id='description' name='description'>
+        </div>
+        <div class="todo-date">
+            <label for='Due-Date'> Due-Date</label>
+            <input type='date' id='dueDate' name='dueDate' required>
+        </div>
+        <div class="todo-priority">
+            <label for="priority">Priority</label>
+            <select name="priority" id="priority">
+                <option value="0">Super important</option>
+                <option value="1">Important</option>
+                <option value="2">Not important</option>
+            </select>
+        </div>
+        <div class="buttonContainerForm">
+            <button class="confirmButtonForm">Confirm</button>
+            <button class="cancelButtonForm">Cancel</button>
+        </div>
+    </form>
     <div class="overlay"></div>
     <script src="main.js"></script>
 </body>

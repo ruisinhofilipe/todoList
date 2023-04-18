@@ -7,27 +7,34 @@ export let todoArray = [];
 const todosDiv = document.querySelector('.todosDiv');
 const newTodoButton = document.querySelector('#newTodoButton');
 const displayEveryTodo = document.querySelector('.displayTodos');
+const changeFormDisplay = document.querySelector('.addTodo');
+const form = document.querySelector('.new-project-form');
+const overlay = document.querySelector('.overlay');
 
 const todoFactory = (title, description, dueDate, priority) => {
     return { title, description, dueDate, priority }
 }
 
 function formData() {
-    newTodoButton.addEventListener('click', () => {
-        if (projectArray.length === 0) {
-            alert('There\'s no projects');
-        } else {
-            let title = document.getElementById('title').value;
-            let description = document.getElementById('description').value;
-            let dueDate = document.getElementById('dueDate').value;
-            if (dueDate == '') {
-                dueDate = 'No date preview';
-            }
-            let priority = document.getElementsByClassName('priority')[0].value;
-            todoArray[currentProjectIndex].push(todoFactory(title, description, dueDate, priority));
-            displayTodos(currentProjectIndex);
-            clearData();
-        }
+    changeFormDisplay.addEventListener('click', () => {
+        overlay.classList.add('visible');
+        form.classList.add('visible');
+
+        // if (projectArray.length === 0) {
+        //     alert('There\'s no projects');
+        // } else {
+        //     let title = document.getElementById('title').value;
+        //     let description = document.getElementById('description').value;
+        //     let dueDate = document.getElementById('dueDate').value;
+        //     if (dueDate == '') {
+        //         dueDate = 'No date preview';
+        //     }
+        //     let priority = document.getElementsByClassName('priority')[0].value;
+        //     todoArray[currentProjectIndex].push(todoFactory(title, description, dueDate, priority));
+        //     displayTodos(currentProjectIndex);
+        //     clearData();
+        // }
+
     });
 }
 
@@ -36,11 +43,6 @@ function clearData() {
     document.getElementById('description').value = '';
     document.getElementById('dueDate').value = '';
     document.getElementsByClassName('priority')[0].value;
-}
-
-
-export function todos() {
-    formData();
 }
 
 export function displayTodos(index) {
@@ -58,6 +60,10 @@ export function displayTodos(index) {
         return;
     }
 };
+
+export function todos() {
+    formData();
+}
 
 
 

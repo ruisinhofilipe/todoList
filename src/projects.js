@@ -62,24 +62,24 @@ function displayArrayProjects() {
             styleProject();
         });
 
-        // // Remove projects
-        // removeProject.addEventListener('click', (e) => {
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        //     let index = removeProject.parentNode.getAttribute('index');
-        //     projectArray.splice(index, 1);
-        //     todoArray.splice(index, 1);
-        //     if (projectArray.length >= 1) {
-        //         currentProjectIndex = 0;
-        //         displayArrayProjects();
-        //         displayTodos(currentProjectIndex);
-        //         styleProject();
-        //     } else {
-        //         currentProjectIndex = '';
-        //         displayArrayProjects();
-        //         removeDom('.displayTodo');
-        //     }
-        // });
+        // Remove projects
+        removeProject.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            let index = removeProject.parentNode.getAttribute('index');
+            projectArray.splice(index, 1);
+            todoArray.splice(index, 1);
+            if (projectArray.length >= 1) {
+                currentProjectIndex = 0;
+                displayArrayProjects();
+                displayTodos(currentProjectIndex);
+                styleProject();
+            } else {
+                currentProjectIndex = '';
+                displayArrayProjects();
+                removeDom('.displayTodo');
+            }
+        });
     });
 }
 
