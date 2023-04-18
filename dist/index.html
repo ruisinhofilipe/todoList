@@ -10,9 +10,13 @@
 
 <body>
     <div class="mainDiv">
-        <div class="projectsDiv"></div>
+        <div class="projectsDiv">
+            <div class="displayProjects"></div>
+            <button class="addPrj">+</button>
+        </div>
         <div class="todosDiv">
-            <form class='new-project-form' name='newTodo'>
+            <button class="addTodo">+</button>
+            <form class='new-project-form' name='newTodo' style="display: none;">
                 <div class='form-title'> Create new todo</div>
                 <label for='title'> Title: </label>
                 <input type='text' id='title' name='title'><br>
@@ -30,6 +34,18 @@
             <div class="displayTodos"></div>
         </div>
     </div>
+    <div class="addProject-popup">
+        <h2>Add Project</h2>
+        <div class="input-project">
+            <label for="titleProject"></label>
+            <input type="text" id="titleProject" name="titleProject">
+        </div>
+        <div class="buttonContainer">
+            <button class="confirmButton">Confirm</button>
+            <button class="cancelButton">Cancel</button>
+        </div>
+    </div>
+    <div class="overlay"></div>
     <script src="main.js"></script>
 </body>
 
