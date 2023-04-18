@@ -15,6 +15,7 @@ function pushProject(projectName) {
         todoArray.push([]);
         document.getElementById('titleProject').value = '';
         projectClass.classList.remove('visible');
+        overlay.classList.remove('visible');
         displayArrayProjects();
     } else {
         alert('Please, introduce a valid project name or you that you haven\'t introduced yet.');
@@ -91,7 +92,6 @@ export function projectDom() {
         const inputValue = document.getElementById('titleProject').value;
         pushProject(inputValue);
         console.log(projectArray);
-        overlay.classList.remove('visible');
         // styleProject();
     });
 
