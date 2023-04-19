@@ -1,10 +1,10 @@
 import elementFactory from './elementFactory';
 import clearDuplicate from './clearDuplicate';
-import { todoArray } from './todoFactory';
-import { displayTodos } from './todoFactory';
+import { todoArray } from './todos';
+import { displayTodos } from './todos';
 
 export let projectArray = [];
-export let currentProjectIndex;
+export let currentProject;
 
 const projectClass = document.querySelector('.addProject-popup');
 const overlay = document.querySelector('.overlay');
@@ -27,7 +27,7 @@ function pushProject(projectName) {
 function styleProject() {
     let projects = document.querySelectorAll('.projectsNameDiv');
     projects.forEach(project => {
-        if (currentProjectIndex == project.getAttribute('index')) {
+        if (projectArray.indexOf(currentProject) == project.getAttribute('index')) {
             project.classList.add('clicked');
         } else {
             project.classList.remove('clicked');
@@ -56,30 +56,30 @@ function displayArrayProjects() {
 
 
         projectNameDiv.addEventListener('click', () => {
-            currentProjectIndex = projectNameDiv.getAttribute('index');
-            displayTodos(currentProjectIndex);
+            currentProject = projectNameDiv.querySelector('.projectsName').textContent;
+            displayTodos(projectArray.indexOf(currentProject));
             displayArrayProjects();
             styleProject();
         });
 
-        // Remove projects
-        removeProject.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            let index = removeProject.parentNode.getAttribute('index');
-            projectArray.splice(index, 1);
-            todoArray.splice(index, 1);
-            if (projectArray.length >= 1) {
-                currentProjectIndex = 0;
-                displayArrayProjects();
-                displayTodos(currentProjectIndex);
-                styleProject();
-            } else {
-                currentProjectIndex = '';
-                displayArrayProjects();
-                removeDom('.displayTodo');
-            }
-        });
+        // // Remove projects
+        // removeProject.addEventListener('click', (e) => {
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //     let index = removeProject.parentNode.getAttribute('index');
+        //     projectArray.splice(index, 1);
+        //     todoArray.splice(index, 1);
+        //     if (projectArray.length >= 1) {
+        //         currentProjectIndex = 0;
+        //         displayArrayProjects();
+        //         displayTodos(currentProjectIndex);
+        //         styleProject();
+        //     } else {
+        //         currentProjectIndex = '';
+        //         displayArrayProjects();
+        //         removeDom('.displayTodo');
+        //     }
+        // });
     });
 }
 

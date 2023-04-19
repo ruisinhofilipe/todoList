@@ -1,11 +1,10 @@
 import elementFactory from "./elementFactory";
 import { projectArray } from "./projects";
-import { currentProjectIndex } from "./projects";
+import { currentProject } from "./projects";
 import removeDom from "./clearPage";
 
-export let todoArray = [];
+export const todoArray = [];
 const todosDiv = document.querySelector('.todosDiv');
-const newTodoButton = document.querySelector('#newTodoButton');
 const displayEveryTodo = document.querySelector('.displayTodos');
 const changeFormDisplay = document.querySelector('.addTodo');
 const form = document.querySelector('.new-project-form');
@@ -15,37 +14,40 @@ const todoFactory = (title, description, dueDate, priority) => {
     return { title, description, dueDate, priority }
 }
 
-function formData() {
+function displayNewTodoForm() {
     changeFormDisplay.addEventListener('click', () => {
         overlay.classList.add('visible');
         form.classList.add('visible');
-
-        // if (projectArray.length === 0) {
-        //     alert('There\'s no projects');
-        // } else {
-        //     let title = document.getElementById('title').value;
-        //     let description = document.getElementById('description').value;
-        //     let dueDate = document.getElementById('dueDate').value;
-        //     if (dueDate == '') {
-        //         dueDate = 'No date preview';
-        //     }
-        //     let priority = document.getElementsByClassName('priority')[0].value;
-        //     todoArray[currentProjectIndex].push(todoFactory(title, description, dueDate, priority));
-        //     displayTodos(currentProjectIndex);
-        //     clearData();
-        // }
-
     });
+}
+
+function formData() {
+    if (projectArray.length === 0) {
+        alert('There\'s no projects');
+        clearData();
+    } else {
+        let title = document.getElementById('title').value;
+        let description = document.getElementById('description').value;
+        let dueDate = document.getElementById('dueDate').value;
+        if (dueDate == '') {
+            dueDate = 'No date preview';
+        }
+        let priority = document.getElementById('priority').options[document.getElementById('priority').selectedIndex].text;
+        todoArray[projectArray.indexOf(currentProject)].push(todoFactory(title, description, dueDate, priority));
+        displayTodos(projectArray.indexOf(currentProject));
+        clearData();
+    }
 }
 
 function clearData() {
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
     document.getElementById('dueDate').value = '';
-    document.getElementsByClassName('priority')[0].value;
 }
 
 export function displayTodos(index) {
+    overlay.classList.remove('visible');
+    form.classList.remove('visible');
     if (projectArray.length > 0) {
         removeDom('.displayTodo');
         for (let j = 0; j < todoArray[index].length; j++) {
@@ -62,7 +64,23 @@ export function displayTodos(index) {
 };
 
 export function todos() {
-    formData();
+    displayNewTodoForm();
+
+    const confirmForm = document.querySelector('.confirmButtonForm');
+    confirmForm.addEventListener('click', (e) => {
+        e.preventDefault();
+        formData();
+        console.log(document.getElementById('priority').options[0].textContent);
+    });
+
+
+
+    const cancelForm = document.querySelector('.cancelButtonForm');
+    cancelForm.addEventListener('click', (e) => {
+        e.preventDefault();
+        overlay.classList.remove('visible');
+        form.classList.remove('visible');
+    });
 }
 
 
