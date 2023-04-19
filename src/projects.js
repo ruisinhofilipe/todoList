@@ -8,6 +8,7 @@ export let currentProject;
 
 const projectClass = document.querySelector('.addProject-popup');
 const overlay = document.querySelector('.overlay');
+
 // Push project to array
 function pushProject(projectName) {
     if (projectName !== null && !projectArray.includes(projectName) && projectName !== '' && projectName !== ' ') {
@@ -16,12 +17,13 @@ function pushProject(projectName) {
         document.getElementById('titleProject').value = '';
         projectClass.classList.remove('visible');
         overlay.classList.remove('visible');
+        currentProject = projectName;
         displayArrayProjects();
     } else {
         alert('Please, introduce a valid project name or you that you haven\'t introduced yet.');
-    }
+    };
     return projectArray;
-}
+};
 
 // Style each project when clicked
 function styleProject() {
@@ -33,7 +35,7 @@ function styleProject() {
             project.classList.remove('clicked');
         }
     });
-}
+};
 
 function displayArrayProjects() {
     // Change project input display property
@@ -62,26 +64,36 @@ function displayArrayProjects() {
             styleProject();
         });
 
-        // // Remove projects
-        // removeProject.addEventListener('click', (e) => {
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        //     let index = removeProject.parentNode.getAttribute('index');
-        //     projectArray.splice(index, 1);
-        //     todoArray.splice(index, 1);
-        //     if (projectArray.length >= 1) {
-        //         currentProjectIndex = 0;
-        //         displayArrayProjects();
-        //         displayTodos(currentProjectIndex);
-        //         styleProject();
-        //     } else {
-        //         currentProjectIndex = '';
-        //         displayArrayProjects();
-        //         removeDom('.displayTodo');
-        //     }
-        // });
+        // Remove projects
+        removeProject.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            let index = removeProject.parentNode.getAttribute('index');
+            projectArray.splice(index, 1);
+            todoArray.splice(index, 1);
+            if (projectArray.length == 1) {
+                currentProject = projectArray[0];
+                displayArrayProjects();
+                // displayTodos(currentProject);
+                styleProject();
+            } else if (projectArray.includes(currentProject)) {
+                currentProject = currentProject;
+                displayArrayProjects();
+                // displayTodos(currentProject);
+                styleProject();
+            } else if (!projectArray.includes(currentProject)) {
+                currentProject = projectArray[0];
+                displayArrayProjects();
+                // displayTodos(currentProject);
+                styleProject();
+            } else {
+                currentProject = '';
+                displayArrayProjects();
+                removeDom('.displayTodo');
+            }
+        });
     });
-}
+};
 
 export function projectDom() {
     displayArrayProjects();
@@ -91,8 +103,7 @@ export function projectDom() {
     confirmButton.addEventListener('click', () => {
         const inputValue = document.getElementById('titleProject').value;
         pushProject(inputValue);
-        console.log(projectArray);
-        // styleProject();
+        styleProject();
     });
 
     // Cancel new project name button
@@ -102,4 +113,4 @@ export function projectDom() {
         projectClass.classList.remove('visible');
         overlay.classList.remove('visible');
     });
-}
+};
