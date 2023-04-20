@@ -3,6 +3,8 @@ import { projectArray } from "./projects";
 import { currentProject } from "./projects";
 import removeDom from "./clearPage";
 
+// remove description as I think it's not necessary or usefull
+
 export const todoArray = [];
 const todosDiv = document.querySelector('.todosDiv');
 const displayEveryTodo = document.querySelector('.displayTodos');
@@ -45,24 +47,23 @@ function clearData() {
     document.getElementById('dueDate').value = '';
 }
 
-// Needs to be fixed
-// export function displayTodos(index) {
-//     overlay.classList.remove('visible');
-//     form.classList.remove('visible');
-//     if (projectArray.length > 0) {
-//         removeDom('.displayTodo');
-//         for (let j = 0; j < todoArray[index].length; j++) {
-//             const displayTodo = elementFactory('div', { class: 'displayTodo' }, undefined)
-//             for (let key in todoArray[index][j]) {
-//                 displayTodo.appendChild(elementFactory('p', { class: `${key}Todo` }, `${key}: ${todoArray[index][j][key]}`));
-//                 displayEveryTodo.appendChild(displayTodo);
-//                 todosDiv.appendChild(displayEveryTodo);
-//             };
-//         };
-//     } else {
-//         return;
-//     }
-// };
+export function displayTodos(index) {
+    overlay.classList.remove('visible');
+    form.classList.remove('visible');
+    if (projectArray.length > 0) {
+        removeDom('.displayTodo');
+        for (let j = 0; j < todoArray[index].length; j++) {
+            const displayTodo = elementFactory('div', { class: 'displayTodo' }, undefined)
+            for (let key in todoArray[index][j]) {
+                displayTodo.appendChild(elementFactory('p', { class: `${key}Todo` }, `${key}: ${todoArray[index][j][key]}`));
+                displayEveryTodo.appendChild(displayTodo);
+                todosDiv.appendChild(displayEveryTodo);
+            };
+        };
+    } else {
+        return;
+    }
+};
 
 export function todos() {
     displayNewTodoForm();

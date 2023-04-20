@@ -93,7 +93,6 @@ header h1 {
     cursor: pointer;
     background-color: rgb(255, 255, 255);
     transition: 0.3s;
-    box-shadow: black;
 }
 
 .buttonContainer {
@@ -160,6 +159,23 @@ header h1 {
     font-size: 1.47rem;
     border-radius: 0.6rem;
     width: 72%;
+}
+
+.removeProject {
+    background-color: rgb(205, 205, 205);
+    border-radius: 50%;
+    border: none;
+    height: 1.7rem;
+    width: 1.7rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #575E9B;
+}
+
+.removeProject:hover {
+    cursor: pointer;
+    background-color: rgb(242, 150, 150);
+    transition: 0.3s;
 }
 
 .todosDiv {
@@ -234,11 +250,14 @@ header h1 {
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .displayTodo {
     display: flex;
+    background-color: #6978d3;
     gap: 1.5rem;
+    border-radius: 1rem;
     font-size: 1.5rem;
     padding: 1rem;
     display: flex;
