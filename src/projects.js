@@ -74,17 +74,17 @@ function displayArrayProjects() {
             if (projectArray.length == 1) {
                 currentProject = projectArray[0];
                 displayArrayProjects();
-                // displayTodos(currentProject);
+                displayTodos(projectArray.indexOf(currentProject));
                 styleProject();
             } else if (projectArray.includes(currentProject)) {
                 currentProject = currentProject;
                 displayArrayProjects();
-                // displayTodos(currentProject);
+                displayTodos(projectArray.indexOf(currentProject));
                 styleProject();
             } else if (!projectArray.includes(currentProject)) {
                 currentProject = projectArray[0];
                 displayArrayProjects();
-                // displayTodos(currentProject);
+                displayTodos(projectArray.indexOf(currentProject));
                 styleProject();
             } else {
                 currentProject = '';
@@ -104,6 +104,7 @@ export function projectDom() {
         const inputValue = document.getElementById('titleProject').value;
         pushProject(inputValue);
         styleProject();
+        displayTodos(projectArray.indexOf(currentProject));
     });
 
     // Cancel new project name button
