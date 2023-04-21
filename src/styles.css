@@ -177,7 +177,8 @@ header h1 {
     width: 72%;
 }
 
-.removeProject {
+.removeProject,
+.removeTodo {
     background-color: rgb(205, 205, 205);
     border-radius: 50%;
     border: none;
@@ -188,9 +189,10 @@ header h1 {
     color: #575E9B;
 }
 
-.removeProject:hover {
+.removeProject:hover,
+.removeTodo:hover {
     cursor: pointer;
-    background-color: rgb(242, 150, 150);
+    background-color: rgb(215, 133, 133);
     transition: 0.3s;
 }
 

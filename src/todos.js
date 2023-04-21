@@ -2,6 +2,7 @@ import elementFactory from "./elementFactory";
 import { projectArray } from "./projects";
 import { currentProject } from "./projects";
 import removeDom from "./clearPage";
+import formatTodosParagraphs from "./formatTodos";
 
 export const todoArray = [];
 const todosDiv = document.querySelector('.todosDiv');
@@ -57,6 +58,7 @@ export function displayTodos(index) {
             };
             displayEveryTodo.appendChild(displayTodo);
             displayTodo.appendChild(elementFactory('button', { class: 'removeTodo', indexParagraph }, 'x'));
+            formatTodosParagraphs();
             indexParagraph++;
         };
     } else {
