@@ -66,13 +66,13 @@ export function displayTodos(index) {
             };
             // formatTodosParagraphs();
             const removeButton = elementFactory('button', { class: 'removeTodo', indexParagraph }, 'x')
-            // displayTodo.appendChild(elementFactory('button', { class: 'removeTodo', indexParagraph }, 'x'));
             displayTodo.appendChild(removeButton);
             displayEveryTodo.appendChild(displayTodo);
             indexParagraph++;
 
             removeButton.addEventListener('click', () => {
-                console.log(removeButton.getAttribute('indexParagraph'));
+                todoArray[projectArray.indexOf(currentProject)].splice(removeButton.getAttribute('indexParagraph'), 1);
+                displayTodos(projectArray.indexOf(currentProject));
             })
         }
     }
