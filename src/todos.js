@@ -37,7 +37,7 @@ function displayNewTodoForm() {
 
 function formData() {
     if (projectArray.length === 0) {
-        alert('There\'s no projects');
+        document.querySelector('.noProjectsDiv').style.display = 'block';
         clearData();
     } else {
         let title = document.getElementById('title').value;
@@ -47,6 +47,7 @@ function formData() {
         }
         let priority = document.getElementById('priority').options[document.getElementById('priority').selectedIndex].text;
         todoArray[projectArray.indexOf(currentProject)].push(todoFactory(title, dueDate, priority));
+        document.querySelector('.noProjectsDiv').style.display = 'none';
         displayTodos(projectArray.indexOf(currentProject));
         clearData();
     }

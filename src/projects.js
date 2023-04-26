@@ -19,6 +19,7 @@ function pushProject(projectName) {
         overlay.classList.remove('visible');
         currentProject = projectName;
         displayArrayProjects();
+        document.querySelector('.noProjectsDiv').style.display = 'none';
     } else {
         alert('Please, introduce a valid project name or you that you haven\'t introduced yet.');
     };

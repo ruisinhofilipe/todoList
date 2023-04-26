@@ -230,6 +230,22 @@ header h1 {
     gap: 0.6rem;
 }
 
+.noProjectsDiv {
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+}
+
+.noProjectsDiv p {
+    background-color: #16205E;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: rgb(217, 83, 83);
+    padding: 0.2rem 0.4rem;
+}
+
+
 .buttonContainerForm {
     display: flex;
     flex-direction: row;
