@@ -1,304 +1,312 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
 }
 
 .overlay {
-    pointer-events: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    z-index: 10;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 10;
 }
 
 .overlay.visible {
-    background-color: rgba(0, 0, 0, 0.5);
-    pointer-events: visible;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: visible;
 }
 
 .mainDiv {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header h1 {
-    background-color: #16205E;
-    padding: 1rem;
+  background-color: #16205e;
+  padding: 1rem;
 }
 
 .projects-and-todos {
-    display: flex;
-    width: 100%;
-    flex: 1;
+  display: flex;
+  width: 100%;
+  flex: 1;
 }
 
 .projectsDiv {
-    background-color: #575E9B;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+  background-color: #575e9b;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .addProject-popup {
-    background-color: #5C6DFF;
-    padding: 1.5rem 6rem;
-    gap: 2rem;
-    border-radius: 0.5rem;
-    display: none;
-    z-index: 14;
+  background-color: #5c6dff;
+  padding: 1.5rem 6rem;
+  gap: 2rem;
+  border-radius: 0.5rem;
+  display: none;
+  z-index: 14;
 }
 
 .addProject-popup.visible {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .addProject-popup input {
-    border: none;
-    outline-color: transparent;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.5rem;
-    background-color: rgb(221, 221, 221);
+  font-size: 1.2rem;
+  border: none;
+  outline-color: transparent;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: rgb(221, 221, 221);
 }
 
 .addProject-popup h2 {
-    align-self: center;
+  align-self: center;
 }
 
 .addPrj {
-    align-self: center;
-    background-color: rgb(183, 182, 182);
-    border-radius: 50%;
-    border: none;
-    font-size: 1.7rem;
-    font-weight: bold;
-    width: 2rem;
-    height: 2rem;
-    color: #575E9B;
+  align-self: center;
+  background-color: rgb(183, 182, 182);
+  border-radius: 50%;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 2rem;
+  height: 2rem;
+  color: #575e9b;
 }
 
 .addPrj:hover {
-    cursor: pointer;
-    background-color: rgb(255, 255, 255);
-    transition: 0.3s;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  transition: 0.3s;
 }
 
 .addTodo {
-    align-self: center;
-    background-color: rgb(183, 182, 182);
-    border-radius: 50%;
-    border: none;
-    font-size: 1.7rem;
-    font-weight: bold;
-    width: 2rem;
-    height: 2rem;
-    color: #575E9B;
+  align-self: center;
+  background-color: rgb(183, 182, 182);
+  border-radius: 50%;
+  border: none;
+  font-size: 1.45rem;
+  font-weight: bold;
+  width: 2rem;
+  height: 2rem;
+  color: #575e9b;
+  display: flex;
+  justify-content: center;
 }
 
 .addTodo:hover {
-    cursor: pointer;
-    background-color: rgb(255, 255, 255);
-    transition: 0.3s;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  transition: 0.3s;
 }
 
 .buttonContainer {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .confirmButton {
-    border: none;
-    border-radius: 0.2rem;
-    padding: 0.4rem 1rem;
-    background-color: rgb(68, 193, 68);
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.4rem 1rem;
+  background-color: rgb(68, 193, 68);
 }
 
 .cancelButton {
-    border: none;
-    border-radius: 0.2rem;
-    padding: 0.4rem 1rem;
-    background-color: rgb(217, 83, 83);
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.4rem 1rem;
+  background-color: rgb(217, 83, 83);
 }
 
 .confirmButton:hover,
 .cancelButton:hover {
-    cursor: pointer;
-    filter: brightness(0.7);
+  cursor: pointer;
+  filter: brightness(0.7);
 }
 
 .displayProjects {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .projectsNameDiv {
-    font-size: 1.5rem;
-    padding: 1rem;
-    display: flex;
-    width: 65%;
-    border-radius: 0.6rem;
-    justify-content: space-between;
-    background-color: #16205E;
+  font-weight: 300;
+  font-size: 1.5rem;
+  padding: 1rem;
+  display: flex;
+  width: 65%;
+  border-radius: 0.6rem;
+  justify-content: space-between;
+  background-color: #16205e;
 }
 
 .projectsNameDiv.clicked {
-    cursor: pointer;
-    background-color: #6978d3;
-    font-size: 1.47rem;
-    border-radius: 0.6rem;
-    width: 72%;
+  cursor: pointer;
+  background-color: #6978d3;
+  font-size: 1.47rem;
+  border-radius: 0.6rem;
+  width: 72%;
 }
 
 .projectsNameDiv:hover {
-    cursor: pointer;
-    background-color: #333e86;
-    border-radius: 0.6rem;
-    width: 67%;
+  cursor: pointer;
+  background-color: #333e86;
+  border-radius: 0.6rem;
+  width: 67%;
 }
 
 .projectsNameDiv.clicked:hover {
-    cursor: pointer;
-    background-color: #6978d3;
-    font-size: 1.47rem;
-    border-radius: 0.6rem;
-    width: 72%;
+  cursor: pointer;
+  background-color: #6978d3;
+  font-size: 1.47rem;
+  border-radius: 0.6rem;
+  width: 72%;
 }
 
 .removeProject,
 .removeTodo {
-    background-color: rgb(205, 205, 205);
-    border-radius: 50%;
-    border: none;
-    height: 1.7rem;
-    width: 1.7rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #575E9B;
+  background-color: rgb(205, 205, 205);
+  border-radius: 50%;
+  border: none;
+  height: 1.7rem;
+  width: 1.7rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #575e9b;
 }
 
 .removeProject:hover,
 .removeTodo:hover {
-    cursor: pointer;
-    background-color: rgb(215, 133, 133);
-    transition: 0.3s;
+  cursor: pointer;
+  background-color: rgb(215, 133, 133);
+  transition: 0.3s;
 }
 
 .todosDiv {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    width: 70%;
-    background-color: #363E88;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 70%;
+  background-color: #363e88;
 }
 
 .new-project-form {
-    background-color: #5C6DFF;
-    padding: 1.5rem 6rem;
-    gap: 1.5rem;
-    border-radius: 0.5rem;
-    display: none;
-    z-index: 14;
+  background-color: #5c6dff;
+  padding: 1.5rem 6rem;
+  gap: 1.5rem;
+  border-radius: 0.5rem;
+  display: none;
+  z-index: 14;
 }
 
 .new-project-form.visible {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.new-project-form>div:not(:last-child) {
-    font-size: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
+.new-project-form > div:not(:last-child) {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .noProjectsDiv {
-    align-self: center;
-    justify-content: center;
-    align-items: center;
-    width: 75%;
+  align-self: center;
+  text-align: center;
+  width: 75%;
 }
 
 .noProjectsDiv p {
-    background-color: #16205E;
-    font-size: 0.85rem;
-    font-weight: bold;
-    color: rgb(217, 83, 83);
-    padding: 0.2rem 0.4rem;
+  background-color: #16205e;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: rgb(217, 83, 83);
+  padding: 0.2rem 0.4rem;
 }
 
-
 .buttonContainerForm {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .confirmButtonForm {
-    border: none;
-    border-radius: 0.2rem;
-    padding: 0.4rem 1rem;
-    background-color: rgb(68, 193, 68);
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.4rem 1rem;
+  background-color: rgb(68, 193, 68);
 }
 
 .cancelButtonForm {
-    border: none;
-    border-radius: 0.2rem;
-    padding: 0.4rem 1rem;
-    background-color: rgb(217, 83, 83);
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.4rem 1rem;
+  background-color: rgb(217, 83, 83);
 }
 
 .confirmButtonForm:hover,
 .cancelButtonForm:hover {
-    cursor: pointer;
-    filter: brightness(0.7);
+  cursor: pointer;
+  filter: brightness(0.7);
 }
 
-.new-project-form>div>input,
-.new-project-form>div>select {
-    width: 100%;
-    height: 1.6rem;
-    border: none;
-    outline-color: transparent;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.5rem;
-    background-color: rgb(221, 221, 221);
+.new-project-form > div > input,
+.new-project-form > div > select {
+  font-size: 1.5rem;
+  width: 100%;
+  height: 3rem;
+  border: none;
+  outline-color: transparent;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: rgb(221, 221, 221);
 }
 
 .displayTodos {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .displayTodo {
-    display: flex;
-    background-color: #6978d3;
-    gap: 1.5rem;
-    border-radius: 1rem;
-    font-size: 1.5rem;
-    padding: 1rem;
-    display: flex;
-    width: 75%;
-    justify-content: space-between;
+  display: flex;
+  background-color: #6978d3;
+  gap: 1.5rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem;
+  display: flex;
+  width: 75%;
+  justify-content: space-between;
 }
